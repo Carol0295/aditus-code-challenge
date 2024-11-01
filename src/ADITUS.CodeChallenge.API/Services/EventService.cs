@@ -58,7 +58,7 @@ namespace ADITUS.CodeChallenge.API.Services
       };
     }
 
-    public Task<Event> GetEvent(Guid id)
+    public Task<Event> GetEvent(Guid id, EventType type)
     {
       var @event = _events.FirstOrDefault(e => e.Id == id);
       return Task.FromResult(@event);

@@ -5,4 +5,49 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="vue-project\node_modules\**" />
+    <Content Remove="vue-project\node_modules\**" />
+    <EmbeddedResource Remove="vue-project\node_modules\**" />
+    <None Remove="vue-project\node_modules\**" />
+    <TypeScriptCompile Remove="node_modules\**" />
+    <TypeScriptCompile Remove="vue-project\node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\vue\dist\favicon.ico" />
+    <Content Remove="wwwroot\vue\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="vue-project\src\shims-vue.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="vue-project\src\components\BarChart.vue" />
+    <Content Include="vue-project\src\main.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\AboutView-CSIvawM9.css" />
+    <None Include="wwwroot\assets\AboutView-k2TcBmhw.js" />
+    <None Include="wwwroot\assets\index-BVulDqmT.css" />
+    <None Include="wwwroot\assets\index-BXAlV6Wo.js" />
+    <None Include="wwwroot\assets\StatisticsView-CBRvqPJG.js" />
+    <None Include="wwwroot\vue\index.html" />
+    <None Include="wwwroot\vue\dist\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.6.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="vue-project\src\shims-vue.d.ts" />
+  </ItemGroup>
+
 </Project>

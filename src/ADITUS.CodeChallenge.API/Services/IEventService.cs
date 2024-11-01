@@ -4,7 +4,7 @@ namespace ADITUS.CodeChallenge.API.Services
 {
   public interface IEventService
   {
-    Task<Event> GetEvent(Guid id);
+    Task<Event> GetEvent(Guid id, EventType type);
     Task<IList<Event>> GetEvents();
   }
 }
