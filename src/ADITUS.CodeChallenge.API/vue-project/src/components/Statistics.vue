@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Statistiken</h1>
-    <div>
+    <div class="statistics">
       <canvas ref="chartCanvas"></canvas>
     </div>
   </div>
@@ -43,7 +43,9 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
           const stats = data.statisticsEvents.find(stat => stat.id === event.id);
           const dataset = {
             label: titleEvent, 
-            data: [],
+            data: [0, 0, 0, 0, 0, 0, 0],
+            backgroundColor: '',
+            borderColor: '',
             borderWidth: 1,
             borderRadius: 10,
           };
@@ -57,7 +59,7 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
                 dataset.data[2] = stats.onSite.boothsCount;
                 dataset.backgroundColor = 'rgba(255, 0, 15, 0.3)';
                 dataset.borderColor = 'rgba(255, 0, 15, 1)';
-              } 
+              }
             }
 
             if (event.type == "Online" || event.type == "Hybrid") {
@@ -70,6 +72,7 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
                 dataset.borderColor = 'rgba(54, 162, 235, 1)';
               } 
             }
+
             if (event.type == "Hybrid") {
               dataset.backgroundColor = 'rgba(255, 235, 129, 0.5)';
               dataset.borderColor = 'rgba(255, 235, 129, 1)';
@@ -128,6 +131,11 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
 </script>
 
 <style scoped>
+
+  .statistics{
+      width:750px;
+      height:750px;
+  }
   canvas {
     max-width: 100%;
     height: 500px;

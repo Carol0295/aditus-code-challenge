@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\vue\dist\favicon.ico" />
     <Content Remove="wwwroot\vue\index.html" />
   </ItemGroup>
 
@@ -24,18 +23,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="vue-project\src\components\BarChart.vue" />
     <Content Include="vue-project\src\main.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\assets\AboutView-B-o4tndh.js" />
     <None Include="wwwroot\assets\AboutView-CSIvawM9.css" />
-    <None Include="wwwroot\assets\AboutView-k2TcBmhw.js" />
-    <None Include="wwwroot\assets\index-BVulDqmT.css" />
-    <None Include="wwwroot\assets\index-BXAlV6Wo.js" />
-    <None Include="wwwroot\assets\StatisticsView-CBRvqPJG.js" />
+    <None Include="wwwroot\assets\index-CNA75Qyt.js" />
+    <None Include="wwwroot\assets\index-msdgIYkz.css" />
+    <None Include="wwwroot\assets\ReservationView-C3zoH7_7.css" />
+    <None Include="wwwroot\assets\ReservationView-DyB1p7iL.js" />
+    <None Include="wwwroot\assets\StatisticsView-BkfbRXfx.js" />
+    <None Include="wwwroot\assets\StatisticsView-D5WLrMV3.css" />
     <None Include="wwwroot\vue\index.html" />
-    <None Include="wwwroot\vue\dist\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>

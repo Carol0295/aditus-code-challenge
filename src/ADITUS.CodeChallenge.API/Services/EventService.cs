@@ -1,13 +1,21 @@
+using System.Net.Http;
+using System.Reflection;
 using ADITUS.CodeChallenge.API.Domain;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ADITUS.CodeChallenge.API.Services
 {
   public class EventService : IEventService
   {
     private readonly IList<Event> _events;
+    private readonly HttpClient _httpClient;
 
-    public EventService()
+    // Konstruktor der Klasse EventsController mit dem Interface IEventService und HttpClient als Parameter
+    public EventService(HttpClient httpClient)
     {
+      _httpClient = httpClient;
+
       _events = new List<Event>
       {
         new Event
@@ -58,15 +66,58 @@ namespace ADITUS.CodeChallenge.API.Services
       };
     }
 
-    public Task<Event> GetEvent(Guid id, EventType type)
-    {
-      var @event = _events.FirstOrDefault(e => e.Id == id);
-      return Task.FromResult(@event);
-    }
-
     public Task<IList<Event>> GetEvents()
     {
       return Task.FromResult(_events);
+    }
+
+    public async Task<HybridEvent> GetEventStatistics(Guid id, EventType type)
+    {
+      var HybridList = new HybridEvent();
+
+      HttpResponseMessage RespOnSite;
+      HttpResponseMessage RespOnline;
+      var MyUrl = "https://codechallenge-statistics.azurewebsites.net/api/";
+
+      if (type == EventType.OnSite || type == EventType.Hybrid)   // Unterscheiden vom Eventtype ob OnSite oder Hybrid
+      {
+        RespOnSite = await _httpClient.GetAsync(MyUrl + "onsite-statistics/" + id);
+        if (RespOnSite.IsSuccessStatusCode)
+        {
+          var OnSiteJson = await RespOnSite.Content.ReadAsStringAsync();
+          HybridList.OnSite = JsonConvert.DeserializeObject<OnSiteEvent>(OnSiteJson);
+        }
+      }
+
+      if (type == EventType.Online || type == EventType.Hybrid)  // Unterscheiden vom Eventtype ob Online oder Hybrid
+      {
+        RespOnline = await _httpClient.GetAsync(MyUrl + "online-statistics/" + id);
+        if (RespOnline.IsSuccessStatusCode)
+        {
+          var OnlineJson = await RespOnline.Content.ReadAsStringAsync();
+          HybridList.Online = JsonConvert.DeserializeObject<OnlineEvent>(OnlineJson);
+        }
+      }
+      return HybridList;
+    }
+
+    public async Task<IList<HybridEvent>> GetEventsWithStatistics()
+    {
+      var StatisticsEvents = new List<HybridEvent>();
+
+      foreach (var InfoEvent in _events) // Statistiken von alle Events holen
+      {
+        var hybridEvent = await GetEventStatistics(InfoEvent.Id, InfoEvent.Type);
+        hybridEvent.Id = InfoEvent.Id;
+        StatisticsEvents.Add(hybridEvent); // Objekten in eine Liste speichern.
+      }
+      return StatisticsEvents;
+    }
+
+    public Task<Event> GetEvent(Guid id)
+    {
+      var @event = _events.FirstOrDefault(e => e.Id == id);
+      return Task.FromResult(@event);
     }
   }
 }
