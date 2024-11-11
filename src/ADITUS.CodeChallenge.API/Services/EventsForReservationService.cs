@@ -22,8 +22,8 @@ namespace ADITUS.CodeChallenge.API.Services
         {
           EventId = Guid.Parse("982a5d6d-40ee-41cd-ba42-78789836e6ac"),
           EventName = "ADITUS Event 2",
-          EventStartDate = new DateTime(2024, 11, 17),
-          EventEndDate = new DateTime(2024, 11, 18),
+          EventStartDate = new DateTime(2024, 11, 28),
+          EventEndDate = new DateTime(2024, 11, 29),
         },
 
         new EventForReservation
