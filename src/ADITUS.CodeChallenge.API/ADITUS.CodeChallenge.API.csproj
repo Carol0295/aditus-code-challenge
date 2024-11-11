@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\vue\index.html" />
+    <Content Remove="wwwroot\index.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,15 +27,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\assets\AboutView-B-o4tndh.js" />
-    <None Include="wwwroot\assets\AboutView-CSIvawM9.css" />
-    <None Include="wwwroot\assets\index-CNA75Qyt.js" />
-    <None Include="wwwroot\assets\index-msdgIYkz.css" />
-    <None Include="wwwroot\assets\ReservationView-C3zoH7_7.css" />
-    <None Include="wwwroot\assets\ReservationView-DyB1p7iL.js" />
-    <None Include="wwwroot\assets\StatisticsView-BkfbRXfx.js" />
-    <None Include="wwwroot\assets\StatisticsView-D5WLrMV3.css" />
-    <None Include="wwwroot\vue\index.html" />
+    <None Include="wwwroot\assets\index-BNLlVnfH.js" />
+    <None Include="wwwroot\assets\index-Bpg8a7-2.css" />
+    <None Include="wwwroot\assets\ReservationView-jjW1AUQw.css" />
+    <None Include="wwwroot\assets\ReservationView-Lv_tDbN8.js" />
+    <None Include="wwwroot\assets\StatisticsView-DIIANvxF.js" />
+    <None Include="wwwroot\assets\StatisticsView-sMTpACOG.css" />
+    <None Include="wwwroot\index.html" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,13 +17,12 @@ builder.Services.AddSingleton<IEventsForReservationService, EventsForReservation
 
 builder.Services.AddHttpClient<EventsController>();
 
-// Agregar el servicio de CORS
+// Hinzufügen des CORS Service
 builder.Services.AddCors(options =>
 {
   options.AddPolicy("AllowLocalhost",
       policy =>
       {
-        // Aquí puedes restringir los orígenes, métodos, y encabezados permitidos
         policy.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod()
@@ -46,7 +45,7 @@ app.UseCors("AllowLocalhost");
 app.UseAuthorization();
 
 app.MapControllers();
-// Redirige cualquier solicitud no manejada por un controlador a Vue.js
+
 app.MapFallbackToFile("index.html");
 
 app.Run();

@@ -11,7 +11,7 @@ namespace ADITUS.CodeChallenge.API.Services
     private readonly IList<Event> _events;
     private readonly HttpClient _httpClient;
 
-    // Konstruktor der Klasse EventsController mit dem Interface IEventService und HttpClient als Parameter
+  
     public EventService(HttpClient httpClient)
     {
       _httpClient = httpClient;
@@ -71,6 +71,13 @@ namespace ADITUS.CodeChallenge.API.Services
       return Task.FromResult(_events);
     }
 
+    public Task<Event> GetEvent(Guid id)
+    {
+      var @event = _events.FirstOrDefault(e => e.Id == id);
+      return Task.FromResult(@event);
+    }
+
+    /* Funktion zum Abrufen der Statistiken für jeder Event anhand der Id und der Eventtyp */
     public async Task<HybridEvent> GetEventStatistics(Guid id, EventType type)
     {
       var HybridList = new HybridEvent();
@@ -101,6 +108,7 @@ namespace ADITUS.CodeChallenge.API.Services
       return HybridList;
     }
 
+    /* Funktion zum Ausgeben der Events mit Ihrer Statistiken */
     public async Task<IList<HybridEvent>> GetEventsWithStatistics()
     {
       var StatisticsEvents = new List<HybridEvent>();
@@ -112,12 +120,6 @@ namespace ADITUS.CodeChallenge.API.Services
         StatisticsEvents.Add(hybridEvent); // Objekten in eine Liste speichern.
       }
       return StatisticsEvents;
-    }
-
-    public Task<Event> GetEvent(Guid id)
-    {
-      var @event = _events.FirstOrDefault(e => e.Id == id);
-      return Task.FromResult(@event);
     }
   }
 }

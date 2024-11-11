@@ -10,15 +10,13 @@ namespace ADITUS.CodeChallenge.API
   public class EventsController : ControllerBase
   {
     private readonly IEventService _eventService;
-    private readonly HttpClient _httpClient;
 
-    // Konstruktor der Klasse EventsController mit dem Interface IEventService und HttpClient als Parameter
-    public EventsController(IEventService eventService, HttpClient httpClient)
+    public EventsController(IEventService eventService)
     {
-      _httpClient = httpClient;
       _eventService = eventService;
     }
 
+    /* Funktion zum Abholen von der Informationen über die Events und über die Statistiken von den Events */
     [HttpGet]
     [Route("")]
     public async Task<IActionResult> GetEvents()

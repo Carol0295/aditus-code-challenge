@@ -34,12 +34,14 @@ namespace ADITUS.CodeChallenge.API.Services
       };
     }
 
+    /* Funktion zum Abholen der Information über ein Hardware über den Id */
     public Task<Hardware> GetHardware(Guid hardwareId)
     {
        var Hardware = _hardware.FirstOrDefault(h => h.Id == hardwareId);
        return Task.FromResult(Hardware);
     }
 
+    /* Funktion zum Abholen der Informationen über alle Hardware */
     public Task<IList<Hardware>> GetAllHardware()
     {
       return Task.FromResult(_hardware);

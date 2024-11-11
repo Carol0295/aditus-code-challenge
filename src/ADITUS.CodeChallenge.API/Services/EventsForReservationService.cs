@@ -44,12 +44,13 @@ namespace ADITUS.CodeChallenge.API.Services
       };
     }
 
-    //Liefert alle Reservierungen
+    /* Funktion zum Liefern aller fiktive Events */
     public Task<IList<EventForReservation>> GetAllEventsForReservation()
     {
       return Task.FromResult(_eventsReservation);
     }
 
+    /* Funktion zum Liefern die Informationen über einen Event */
     public Task<EventForReservation> GetEventById(Guid Id)
     {
       var infoEvent = _eventsReservation.FirstOrDefault(e => e.EventId == Id);

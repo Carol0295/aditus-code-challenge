@@ -19,8 +19,8 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
     setup() {
       const chartCanvas = ref(null);
       const chartInstance = ref(null);
-
-      // Funktion zum aufrufen der API Daten
+   
+      /* Funktion zum aufrufen der API Daten */
       const fetchEventData = async () => {
         try {
           const response = await fetch('events'); // Daten von Controller aufrufen
@@ -87,7 +87,7 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
         };
       };
 
-      // Funktion zum Erstellung der Statistiken
+      /* Funktion zum Erstellung der Statistiken */
       const createChart = (organizedData) => {
         const { datasets } = organizedData;
 
@@ -95,7 +95,7 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
         chartInstance.value = new Chart(chartCanvas.value, {
           type: 'bar',
           data: {
-            labels: ['Visitors Count', 'Exhibitors Count', 'Booths Count', 'Teilnehmerinnen', 'Eingeladen', 'Besuche', 'Virtuelle Räume'], // Etiquetas fijas para los tipos de datos
+            labels: ['Besucher Anzahl', 'Austeller Anzahl', 'Stände Anzahl', 'Teilnehmerinnen', 'Eingeladen', 'Besuche', 'Virtuelle Räume'], // Etiketten für die Daten
             datasets: datasets,
           },
           options: {
@@ -133,7 +133,7 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Too
 <style scoped>
 
   .statistics{
-      width:750px;
+      width:950px;
       height:750px;
   }
   canvas {

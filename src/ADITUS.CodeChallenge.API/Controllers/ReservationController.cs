@@ -17,7 +17,7 @@ namespace ADITUS.CodeChallenge.API
       _reservationService = reservationService;
       _eventsForReservationService = eventsForReservationService;
     }
-
+    /* Funkntion zum Abholen aller Reservierungen in Memory*/
     [HttpGet]
     [Route("allReservations")]
     public async Task<IActionResult> GetAllReservations()
@@ -26,43 +26,38 @@ namespace ADITUS.CodeChallenge.API
       return Ok(reservations);
     }
 
-    [HttpGet]
-    [Route("{id}")]
-    //Liefert die Informationen über eine Reservierung
-    public async Task<IActionResult> GetReservation(Guid id)
-    {
-      var reservation = await _reservationService.GetReservation(id);
-      if (reservation == null)
-      {
-        return NotFound();
-      }
-
-      return Ok(reservation);
-    }
-
+    /* Funktion zum Senden zum Bearbeitung nach der Service von der zu bearabeitenden Reservierungsinformationen*/
     [HttpPost]
     [Route("")]
     public async Task<IActionResult> CreateReservation([FromBody] Reservation hardwareReservation)
     {
       if (hardwareReservation == null || hardwareReservation.HardwareList == null || !hardwareReservation.HardwareList.Any() ) 
       {
-        return BadRequest("Invalid reservation data.");
+        return StatusCode(500, new { Success = false, message = "Bitte Daten prüfen." });
+      }
+
+      try
+      {
+        var successReservations = await _reservationService.AddReservation(hardwareReservation);
+
+        if (successReservations.Success == false )
+        {
+          return StatusCode(500, new { Success = false, message = successReservations.Message });
+        }
+
+        return Ok(new { Success = true, Message = "Die Reservierung wurde gemacht, eine Freigabe steht aus. Bitte aktuelle Reservierungen Seite ansehen.", reservations = successReservations });
+
+      } catch (Exception ex) {
+        
+        return BadRequest(new { Success = false, message = ex.Message });
       }
       
-      var successReservations = await _reservationService.AddReservation(hardwareReservation);
-
-      if (successReservations != null)
-      {
-        return Ok(successReservations);
-      }
-      else
-      {
-        return StatusCode(500, "Error beim Bearbeitung der Reservierung");
-      }
     }
 
+
+    /* Funktion zum zurückgeben alle Fiktive Events für das Select in dem HTML */
     [HttpGet]
-    [Route("")] // mirar si cambio la ruta
+    [Route("eventsForReservation")]
     public async Task<IActionResult> GetAllEventsForReservation()
     {
       var eventsReservation = await _eventsForReservationService.GetAllEventsForReservation();

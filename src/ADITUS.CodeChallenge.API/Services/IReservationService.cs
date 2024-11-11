@@ -6,7 +6,6 @@ namespace ADITUS.CodeChallenge.API.Services
   {
     Task<Reservation> GetReservation(Guid id);
     Task<List<Reservation>> GetAllReservations();
-    Task<bool> GetReservationbyEvent(Guid eventId);
-    Task<List<Reservation>> AddReservation(Reservation reservation);
+    Task<ReservationResult> AddReservation(Reservation reservation);
   }
 }
